@@ -25,6 +25,11 @@ class IndexController extends AbstractController
         return [
             'method' => $method,
             'message' => "Hello {$user}.",
+			'userVideoIcon' => 'https://images.69hypercar.com/mkt/video-icon.png',
+			'userPoster'    => 'https://images.69hypercar.com/mkt/user_poster.png',
+			'userSrc'       => 'https://images.69hypercar.com/mkt/home_vidoe.mp4',
+			'dealerPoster'  => 'https://images.69hypercar.com/mkt/dealer_poster.png',
+			'dealerSrc'     => 'https://images.69hypercar.com/mkt/home_vidoe.mp4',
         ];
     }
 }

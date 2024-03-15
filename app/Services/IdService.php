@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Services;
+use Hyperf\Cache\Cache;
+use Hyperf\Stringable\Str;
 
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Str;
 
 class IdService
 {
@@ -31,18 +31,18 @@ class IdService
 
 		$uniqueKey = sprintf("GenerateIdIncrement:%s", $year);
 		self::init($uniqueKey, 86400);
-		$id = bcadd(Cache::increment($uniqueKey), $year, 0);
+		// $id = bcadd(Cache::increment($uniqueKey), $year, 0);
 
-		$id = str_pad($id, 12, '0', STR_PAD_LEFT);
+		// $id = str_pad($id, 12, '0', STR_PAD_LEFT);
 
-		return sprintf("%s%s", $machine, $id);
+		// return sprintf("%s%s", $machine, $id);
 	}
 
 	static function init($uniqueKey, $ttl)
 	{
-		if (!Cache::has($uniqueKey)) {
-			Cache::add($uniqueKey, 0, $ttl);
-		}
+		// if (!Cache::($uniqueKey)) {
+		// 	Cache::add($uniqueKey, 0, $ttl);
+		// }
 	}
 
 	/**

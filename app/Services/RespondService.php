@@ -2,13 +2,12 @@
 
 namespace App\Services;
 
-use App\Services\Algorithm\Md5;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Response;
+use Hyperf\HttpServer\Contract\ResponseInterface;
+use Hyperf\HttpServer\Response;
 
 class RespondService
 {
-	static function Error($message): JsonResponse
+	static function Error($message): ResponseInterface
 	{
 		return Response::json([
 			'time' => date('Y-m-d H:i:s'),
@@ -17,7 +16,7 @@ class RespondService
 		]);
 	}
 
-	static function Success($data): JsonResponse
+	static function Success($data): ResponseInterface
 	{
 		return Response::json([
 			'time' => date('Y-m-d H:i:s'),
@@ -26,23 +25,4 @@ class RespondService
 		]);
 	}
 
-	static function TCError($message, $code): JsonResponse
-	{
-		return Response::json([
-			'time' => date('Y-m-d H:i:s'),
-			'code' => $code,
-			'message' => $message,
-		]);
-	}
-
-	static function TCSuccess(array $data): JsonResponse
-	{
-		$data = array_merge([
-			'time' => date('Y-m-d H:i:s'),
-			'code' => '0000',
-			'message' => '请求成功',
-		], $data);
-		$data['sign'] = Md5::encode($data, session('merchant.md5key'));
-		return Response::json($data);
-	}
 }

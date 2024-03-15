@@ -2,7 +2,7 @@
 
 namespace App\Services\Algorithm;
 
-use Illuminate\Support\Str;
+use Hyperf\Stringable\Str;
 
 class Algorithm
 {
@@ -50,8 +50,8 @@ class Algorithm
 	public function __construct($data, $expiration = '+2 day')
 	{
 		$this->jti = Str::uuid();
-		$this->iss = env('APP_NAME');
-		$this->aud = env('APP_ENV');
+		$this->iss = getenv('APP_NAME');
+		$this->aud = getenv('APP_ENV');
 		$this->iat = date('Y-m-d H:i:s');
 		$this->nbf = date('Y-m-d H:i:s');
 		$this->exp = date('Y-m-d H:i:s', strtotime($expiration));
@@ -70,7 +70,7 @@ class Algorithm
 
 	public function validateIssAud(): bool
 	{
-		return !($this->iss == env('APP_NAME') && $this->aud == env('APP_ENV'));
+		return !($this->iss == getenv('APP_NAME') && $this->aud == getenv('APP_ENV'));
 	}
 
 	public function validateNbf(): bool

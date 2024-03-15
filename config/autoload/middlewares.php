@@ -1,6 +1,9 @@
 <?php
-
 declare(strict_types=1);
+
+use App\Middleware\CorsMiddleware;
+use App\Middleware\JwtMiddleware;
+
 /**
  * This file is part of Hyperf.
  *
@@ -11,5 +14,7 @@ declare(strict_types=1);
  */
 return [
     'http' => [
+		CorsMiddleware::class,
+		JwtMiddleware::class,
     ],
 ];

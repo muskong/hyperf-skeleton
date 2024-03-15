@@ -2,8 +2,8 @@
 
 namespace App\Services\Algorithm;
 
+use App\Services\LoggerService;
 use Exception;
-use Illuminate\Support\Facades\Log;
 
 class Aes
 {
@@ -25,7 +25,7 @@ class Aes
 			}
 			return $encrypt;
 		} catch (Exception $e) {
-			Log::error('解密错误', [
+			LoggerService::error('解密错误', [
 				'file' => $e->getFile(),
 				'line' => $e->getLine(),
 				'message' => $e->getMessage(),
@@ -43,7 +43,7 @@ class Aes
 			}
 			return $decrypt;
 		} catch (Exception $e) {
-			Log::error('解密错误', [
+			LoggerService::error('解密错误', [
 				'file' => $e->getFile(),
 				'line' => $e->getLine(),
 				'message' => $e->getMessage(),
