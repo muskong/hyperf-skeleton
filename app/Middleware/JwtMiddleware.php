@@ -14,7 +14,7 @@ use Hyperf\HttpServer\Contract\ResponseInterface as HttpResponse;
 
 class JwtMiddleware implements MiddlewareInterface
 {
-    protected HttpResponse $response;
+	protected HttpResponse $response;
 	public function __construct(protected ContainerInterface $container, HttpResponse $response)
 	{
 		$this->response = $response;
@@ -28,7 +28,7 @@ class JwtMiddleware implements MiddlewareInterface
 		$token = $request->getHeaderLine('Authorization');
 
 		if (strrpos($token, 'Bearer ') !== false) {
-			$token = ltrim($token, 'Bearer ');
+			$token = str_replace('Bearer ', '', $token);
 
 			$member = TokenService::decode($token);
 			if (!$member) {

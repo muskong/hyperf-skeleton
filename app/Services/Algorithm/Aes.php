@@ -8,7 +8,7 @@ use Exception;
 class Aes
 {
 	private const passphrase = 'XpPkt7uezRQBkfrsX76FXyDSNs222233';
-	private const iv = 'TxfivTaSnr6mLOgy';
+	private const iv         = 'TxfivTaSnr6mLOgy';
 	private const cipherAlgo = 'aes-256-cbc';
 
 	static function method()
@@ -26,10 +26,10 @@ class Aes
 			return $encrypt;
 		} catch (Exception $e) {
 			LoggerService::error('解密错误', [
-				'file' => $e->getFile(),
-				'line' => $e->getLine(),
+				'file'    => $e->getFile(),
+				'line'    => $e->getLine(),
 				'message' => $e->getMessage(),
-				'trace' => $e->getTraceAsString()
+				'trace'   => $e->getTraceAsString()
 			]);
 			return '';
 		}
@@ -44,9 +44,10 @@ class Aes
 			return $decrypt;
 		} catch (Exception $e) {
 			LoggerService::error('解密错误', [
-				'file' => $e->getFile(),
-				'line' => $e->getLine(),
+				'file'    => $e->getFile(),
+				'line'    => $e->getLine(),
 				'message' => $e->getMessage(),
+				'data'    => $data,
 			]);
 			return '';
 		}

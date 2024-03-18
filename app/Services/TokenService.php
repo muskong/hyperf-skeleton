@@ -8,7 +8,7 @@ use Exception;
 
 class TokenService
 {
-	static function generate($data, $expire='+2 day')
+	static function generate($data, $expire = '+2 day')
 	{
 		$data = new Algorithm($data, $expire);
 
@@ -43,7 +43,13 @@ class TokenService
 			return $algorithm->getData();
 
 		} catch (Exception $e) {
-			LoggerService::exception($e, __METHOD__ . __LINE__);
+			LoggerService::error('解密错误', [
+				__METHOD__ . __LINE__,
+				'file'    => $e->getFile(),
+				'line'    => $e->getLine(),
+				'message' => $e->getMessage(),
+				'token'   => $token,
+			]);
 			return false;
 		}
 	}
